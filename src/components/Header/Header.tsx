@@ -30,7 +30,7 @@ const Header: React.FC<HeaderProps> = ({onOpenChange}) => {
 
         {/* Call-to-Action */}
         <div className="flex items-center space-x-3">
-        <button onClick={() => onOpenChange(true)} className="bg-teal-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition">
+        <button onClick={() => onOpenChange(true)} className="bg-teal-600 text-white px-4 py-2 rounded-lg shadow hover:bg-teal-700 transition">
             New Trip
       </button>
         </div>
