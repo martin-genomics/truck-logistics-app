@@ -13,6 +13,7 @@ import TripSummary from './components/TripDashboard/TripSummary';
 import TripHistory from './components/TripHistory/TripHistory';
 import { Truck, Loader2 } from 'lucide-react';
 import Header from './components/Header/Header';
+import DotGrid from './components/DotGrid';
 
 
 
@@ -24,17 +25,22 @@ const App: React.FC = () => {
   const [trips, setTrips] = useState<RouteData[]>([]);
   const [selectedTrip, setSelectedTrip] = useState<RouteData | null>(null);
   const [open, setOpen] = useState(false);
+  const [isSubmitLoading, setIsSubmitLoading] = useState(false);
+
   const handleFormSubmit = async (formData: FormData) => {
+    setIsSubmitLoading(true);
     setLoading(true);
     setError(null);
     
     try {
+
       // Call the trip service to create a new trip
       const response = await tripService.createTrip(formData);     
       if (response.success && response.data) {
         setTripData(response.data);
         toast.success('Trip plan generated successfully!');
         setOpen(false);
+        setIsSubmitLoading(false);
       } else {
         throw new Error(response.message || 'Failed to generate trip plan');
       }
@@ -45,6 +51,7 @@ const App: React.FC = () => {
       console.error('Error generating trip:', err);
     } finally {
       setLoading(false);
+      setIsSubmitLoading(false);
     }
   };
 
@@ -103,12 +110,34 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="bg-black min-h-screen">
-      <div className="container mx-auto px-4 py-8">
+    <div 
+      style={{ width: '100%', height: '100vh', position: 'relative', backgroundColor: 'black' }}
+      className='overflow-hidden overflow-x-hidden '
+      >
+        <DotGrid
+    dotSize={0.5}
+    gap={15}
+    baseColor="#5227FF"
+    activeColor="#5227FF"
+    proximity={120}
+    shockRadius={250}
+    shockStrength={5}
+    resistance={750}
+    returnDuration={1.5}
+  />
+      <div 
+        style={{
+          scrollBehavior: 'smooth',
+          scrollPaddingTop: '8rem',
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'transparent transparent',
+        }}
+        className="fixed inset-0 z-50  mx-auto px-4 py-8 overflow-y-scroll">
+
         <Header onOpenChange={setOpen} />
 
         <main className='mt-8'>
-          <TripForm onSubmit={handleFormSubmit} open={open} onOpenChange={setOpen} />
+          <TripForm onSubmit={handleFormSubmit} open={open} onOpenChange={setOpen} isLoading={isSubmitLoading} />
           
           {loading && <LoadingSpinner />}
           

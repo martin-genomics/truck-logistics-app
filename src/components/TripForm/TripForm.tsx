@@ -11,14 +11,16 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import {ClipLoader} from 'react-spinners'
 
 interface TripFormProps {
   onSubmit: (formData: FormData) => void;
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  isLoading: boolean;
 }
 
-const TripForm: React.FC<TripFormProps> = ({ onSubmit, open, onOpenChange }) => {
+const TripForm: React.FC<TripFormProps> = ({ onSubmit, open, onOpenChange, isLoading }) => {
   const [formData, setFormData] = React.useState<FormData>({
     current_location: '',
     pickup_location: '',
@@ -113,7 +115,8 @@ const TripForm: React.FC<TripFormProps> = ({ onSubmit, open, onOpenChange }) => 
           </div>
           
           <DialogFooter>
-            <Button type="submit" size={"lg"} className='bg-teal-600 hover:bg-teal-500 text-white'>Generate Trip Plan</Button>
+            <Button type="submit" size={"lg"} className='bg-teal-600 hover:bg-teal-500 text-white'>
+              {isLoading ? <ClipLoader color="#ffffff" size={20} /> : 'Generate Trip Plan'}</Button>
           </DialogFooter>
         </form>
       </DialogContent>

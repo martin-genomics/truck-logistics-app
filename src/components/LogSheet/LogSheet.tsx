@@ -59,7 +59,7 @@ const LogSheet: React.FC<LogSheetProps> = ({ log_entries }) => {
               title={`${entry.status}: ${formatTime(startHour)}-${formatTime(endHour)}`}
             >
               <div className="h-full flex items-center justify-center text-xs font-medium">
-                {duration > 2 && `${duration}h`}
+                {duration > 2 && `${duration.toFixed(2)}h`}
               </div>
             </div>
           );
