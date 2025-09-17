@@ -1,6 +1,6 @@
 // components/Header.tsx
 import React from "react";
-import { Truck, MapPin } from "lucide-react"; // simple icons
+import { Truck } from "lucide-react"; // simple icons
 
 interface HeaderProps {
   onOpenChange: (open: boolean) => void;

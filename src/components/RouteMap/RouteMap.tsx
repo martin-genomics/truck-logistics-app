@@ -14,7 +14,6 @@ const RouteMap: React.FC<RouteMapProps> = ({ routeData, className = 'h-[60vh]' }
   const [lat, setLat] = useState(39.8283);
   const [zoom, setZoom] = useState(3);
   const [isLoading, setIsLoading] = useState(true);
-  const [locationNames, setLocationNames] = useState<{[key: string]: string}>({});
 
   // Get color for different stop types
   const getStopColor = (stopType: string): string => {
@@ -122,12 +121,6 @@ const RouteMap: React.FC<RouteMapProps> = ({ routeData, className = 'h-[60vh]' }
         // Reverse geocode to get actual address
         const reverseGeocodedAddress = await reverseGeocode(coords);
         address = reverseGeocodedAddress;
-        
-        // Update location names state
-        setLocationNames(prev => ({
-          ...prev,
-          [stop.location]: reverseGeocodedAddress
-        }));
       }
       
       coordinates.push({ stop, coordinates: coords, address });

@@ -1,5 +1,5 @@
 import apiClient from './axiosConfig';
-import type { RouteData, FormData, LogEntry } from '@/types';
+import type { RouteData, FormData } from '@/types';
 
 // Type for the API response
 export interface ApiResponse<T> {

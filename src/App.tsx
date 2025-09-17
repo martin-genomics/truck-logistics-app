@@ -13,7 +13,6 @@ import TripSummary from './components/TripDashboard/TripSummary';
 import TripHistory from './components/TripHistory/TripHistory';
 import { Truck, Loader2 } from 'lucide-react';
 import Header from './components/Header/Header';
-import Aurora from './components/Aurora';
 
 
 

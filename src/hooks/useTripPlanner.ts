@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import type { TripData, Stop, RouteSegment, DailySchedule } from '../types/trip';
+import type { TripData } from '../types/trip';
 
 interface TripFormData {
   origin: string;
